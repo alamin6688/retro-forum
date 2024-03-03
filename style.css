@@ -7,8 +7,19 @@
 .primary-btn-color{
     background-color: #797DFC;
 }
-
-
+.banner-container{
+    background-color: #12132D;
+    background-repeat: no-repeat;
+    background-position: bottom;
+    border-radius: 32px;
+}
+.sub-container{
+    background: url(images/bgbanner.png);
+    background-repeat: no-repeat;
+    background-position: bottom;
+    border-radius: 32px;
+    background-size: cover;
+}
 
 
 
