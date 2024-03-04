@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,6 +24,7 @@
     <!-- Font Awesome -->
     <script src="https://kit.fontawesome.com/1e313f4bd5.js" crossorigin="anonymous"></script>
 </head>
+
 <body class="font-mulish w-[90%] mx-auto">
     <header>
         <!-- Navbar -->
@@ -68,8 +70,8 @@
                     <div class="flex">
                         <label
                             class="input input-bordered flex items-center gap-0 lg:gap-2 w-full lg:w-3/4 lg:p-7 rounded-[50px] mt-8">
-                            <input type="text" class="grow" placeholder="Search here" />
-                            <button
+                            <input id="search-field" type="text" class="grow" placeholder="Search here" />
+                            <button onclick="handleSearch()"
                                 class="btn primary-btn-color lg:text-[20px] text-white border-none font-bold rounded-[50px]">Search
                             </button>
                         </label>
@@ -98,22 +100,57 @@
         </div>
     </header>
     <main>
+        <!-- Let’s Discuss Section -->
+        <section class="mt-32 mb-32">
+            <div>
+                <h1 class="text-5xl mx-auto text-center lg:text-4xl font-black mb-6">
+                    Let’s Discuss
+                </h1>
+                <p class="text-[18px] mx-auto text-center font-normal mb-16 w-full lg:w-1/2">
+                    Embark on insightful conversations in our forum.Engage in thought-provoking dialogues where every
+                    voice finds its place. Let's Discuss and uncover the collective wisdom within our community.
+                </p>
+            </div>
+            
+
+        </section>
         <!-- Join Forum Section -->
-        <section class="bg-[#12132D] w-full mt-24 rounded-[32px] lg:flex justify-center items-center p-8 lg:p-24 space-y-8">
+        <section
+            class="bg-[#12132D] w-full mt-24 rounded-[32px] lg:flex justify-center items-center p-8 lg:p-24 space-y-8">
             <div class="lg:w-3/4 text-white">
                 <h1 class="text-3xl lg:text-4xl font-black mb-4">
                     Join Our Forum
                 </h1>
                 <p class="text-[18px] font-normal mb-8 w-full lg:w-3/4">
-                    Dive into our vibrant community where discussions flourish. Join our forum and be part of the conversation mosaic.Connect, share and explore passions in our welcoming forum atmosphere.
+                    Dive into our vibrant community where discussions flourish. Join our forum and be part of the
+                    conversation mosaic.Connect, share and explore passions in our welcoming forum atmosphere.
                 </p>
-                <button class="btn primary-btn-color lg:text-[20px] text-white border-none font-bold rounded-[50px] mb-4">
+                <button
+                    class="btn primary-btn-color lg:text-[20px] text-white border-none font-bold rounded-[50px] mb-4">
                     Registered Now
                 </button>
             </div>
             <div>
                 <img src="images/joinforum.png" alt="">
             </div>
+        </section>
+        <!-- Latest Posts Section -->
+        <section class="mt-32 mb-32">
+            <div>
+                <h1 class="text-3xl mx-auto text-center lg:text-4xl font-black mb-6">
+                    Latest Posts
+                </h1>
+                <p class="text-[18px] mx-auto text-center font-normal mb-16 w-full lg:w-1/2">
+                    Stay in the loop with our freshest discussions and insights. Explore the pulse of our community
+                    through the latest posts.
+                </p>
+            </div>
+        </div>
+        <!-- Latest Posts Container -->
+        <div id="latest-post-container" class="grid mt-10 gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+            <!-- Posts Cards -->
+
+        </div>
         </section>
     </main>
     <footer class="footer footer-center p-10 bg-base-200 text-base-content rounded-md mt-32">
@@ -156,4 +193,5 @@
     </footer>
     <script src="scripts.js"></script>
 </body>
+
 </html>
