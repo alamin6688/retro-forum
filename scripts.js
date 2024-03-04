@@ -1,50 +1,54 @@
-const loadCategory = async(searchText='') =>{
-    const res = await fetch(`https://openapi.programming-hero.com/api/retro-forum/posts?category=${searchText}`);
+const loadCategory = async (searchText = "") => {
+    const res = await fetch(
+      `https://openapi.programming-hero.com/api/retro-forum/posts?category=${searchText}`
+    );
     const data = await res.json();
     const category = data.posts;
-    // console.log(category);
     display(category);
-}
+};
 
-const display = category =>{
+    
+    const display = (category) => {
     // console.log(category)
-
-    const categoryContainer = document.getElementById('category-container');
-    categoryContainer.textContent = '';
-
-    category.forEach(item =>{
-        console.log(item);
-        // create a div
-        const categoryCard = document.createElement('div');
-        categoryCard.classList = `lg:flex justify-center items-center bg-gray-200 rounded-3xl p-3 shadow-2xl`;
-        // set innerHTML
-        categoryCard.innerHTML = `
-        <figure>
-            <div class="avatar online">
-                <div class="w-24 rounded-full">
-                  <img src="${item.image}"/>
-                </div>
-              </div>
+    const categoryContainer = document.getElementById("category-container");
+    categoryContainer.textContent = "";
+  
+category.forEach((item) => {
+    console.log(item);
+    // create a div
+    const categoryCard = document.createElement("div");
+    categoryCard.classList = `lg:flex justify-center items-center bg-gray-200 rounded-3xl p-4 shadow-2xl`;
+    // set innerHTML
+    categoryCard.innerHTML = `
+        <figure class="pt-8 pr-8 pl-8 pb-2 lg:p-4">
+            <div class="bg-white w-24 h-24 rounded-xl relative">
+                <img class=" w-24 h-24 rounded-xl" src='${item.image}'>
+            <div>
+            <div>
+            <i class="fa-solid fa-circle absolute -right-1 -top-1 ${
+              item.isActive ? "text-green-500" : "text-red-500"
+            }"></i>
+            </div>
         </figure>
         <div class="card-body">
             <div class="lg:flex justify-start gap-6">
                 <div>
-                    <p>#<span> </span>${item.category}</p>
+                    <p class="text-[16px] font-inter font-medium">#<span> </span>${item.category}</p>
                 </div>
                 <div>
-                    <p>Author:<span> </span>${item.author.name}</p>
+                    <p class="text-[16px] font-inter font-medium">Author:<span> </span>${item.author.name}</p>
                 </div>
             </div>
-            <h2 class="card-title">${item.title}</h2>
-            <p>${item.description}</p>
+            <h2 class="card-title text-[20px] font-bold">${item.title}</h2>
+            <p class="text-[16px] font-inter">${item.description}</p>
             <div class="card-actions items-center justify-start">
-                <p><i class="fa-regular fa-comment-dots"></i>
+                <p class="text-[16px] font-inter font-medium"><i class="fa-regular fa-comment-dots"></i>
                     <span> </span>${item.comment_count}
                 </p>
-                <p><i class="fa-regular fa-eye"></i>
+                <p class="text-[16px] font-inter font-medium"><i class="fa-regular fa-eye"></i>
                     <span> </span>${item.view_count}
                 </p>
-                <p><i class="fa-regular fa-clock"></i>
+                <p class="text-[16px] font-inter font-medium"><i class="fa-regular fa-clock"></i>
                     <span> </span>${item.posted_time}
                 </p>
                 <p>
@@ -55,97 +59,20 @@ const display = category =>{
             </div>
         </div>
         `;
-        // append child
-        categoryContainer.appendChild(categoryCard);
-    });
-}
-
+    // append child
+    categoryContainer.appendChild(categoryCard);
+  });
+};
 
 // Handle Search Button
-const handleSearch = () =>{
-    // console.log('clicked')
+const handleSearch = () => {
+    // console.log("clicked");
     // toggleLoadingSpinner(true);
-    const searchField = document.getElementById('search-field');
+    const searchField = document.getElementById("search-field");
     const searchText = searchField.value;
     console.log(searchText);
     loadCategory(searchText);
-}
-
-loadCategory();
-
-
-// const loadCategory = async(searchText) =>{
-//     const res = await fetch(`https://openapi.programming-hero.com/api/retro-forum/posts?category=${searchText}`);
-//     const data = await res.json();
-//     const category = data.posts;
-//     // console.log(data);
-//     display(category);
-
-// }
-
-// const display = category =>{
-//     // console.log(category)
-//     category.forEach(item =>{
-//         console.log(item);
-
-//         const categoryContainer = document.getElementById('category-container');
-//         categoryContainer.textContent = '';
-
-//         const showAllContainer = document.getElementById('show-all-category');
-//         if(category.length > 1){
-//             showAllContainer.classList.remove('hidden');
-//         }
-//         else{
-//             showAllContainer.classList.add('hidden');
-//         }
-        
-//         // category = category.slice(0,3);
-
-//         const categoryCard = document.createElement('div');
-//         categoryCard.classList = `card w-3/4 bg-gray-200 shadow-xl mt-10`;
-//         categoryCard.innerHTML = `
-        
-        //     <div class="lg:flex justify-center items-center">
-        // <figure>
-        //     <img class="w-[72px] h-[72px] rounded-lg m-5" src="${item.image}" alt=""/>
-        // </figure>
-        //     <div class="card-body">
-        //     <div class="flex justify-start gap-6">
-        //         <div>
-        //         <p>#<span>  </span>${item.category}</p>
-        //         </div>
-        //         <div>
-        //         <p>Author:<span>  </span>${item.author.name}</p>
-        //         </div>
-        //     </div>
-        //         <h2 class="card-title">${item.title}</h2>
-        //         <p>${item.description}</p>
-        //         <div class="card-actions justify-start">
-        //             <p><i class="fa-regular fa-comment-dots"></i>
-        //             <span>  </span>${item.comment_count}</p>
-        //             <p><i class="fa-regular fa-eye"></i>
-        //             <span>  </span>${item.view_count}</p>
-        //             <p><i class="fa-regular fa-clock"></i>
-        //             <span>  </span>${item.posted_time}</p>
-        //         </div>
-        //     </div>
-        
-        
-//         `;
-//         categoryContainer.appendChild(categoryCard);
-//         toggleLoadingSpinner(false);
-//     });
-
-// }
-
-// Handle Search Button
-// const handleSearch = () =>{
-//     toggleLoadingSpinner(true);
-//     const searchField = document.getElementById('search-field');
-//     const searchText = searchField.value;
-//     console.log(searchText);
-//     loadCategory(searchText);
-// }
+};
 
 // const toggleLoadingSpinner = (isLoading) =>{
 //     const loadingSpinner = document.getElementById('loading-spinner');
@@ -157,40 +84,48 @@ loadCategory();
 //     }
 // }
 
-// loadCategory();
+loadCategory();
 
+
+
+
+// loadCategory();
 
 // Latest Posts Functionality
 const loadLatestPosts = async () => {
-    const res = await fetch(`https://openapi.programming-hero.com/api/retro-forum/latest-posts`);
-    const data = await res.json();
-    const latestPosts = data;
-    console.log(latestPosts);
-    // calling a function for display posts
-    displayLatestPosts(latestPosts)
-}
+  const res = await fetch(
+    `https://openapi.programming-hero.com/api/retro-forum/latest-posts`
+  );
+  const data = await res.json();
+  const latestPosts = data;
+  console.log(latestPosts);
+  // calling a function for display posts
+  displayLatestPosts(latestPosts);
+};
 // function for display latest post
-const displayLatestPosts = latestPosts => {
-    // loop latest posts
-    latestPosts.forEach(latestPost => {
-        console.log(latestPost);
-        // get image, author & category
-        const latestPostCoverImage = latestPost.cover_image;
-        const latestPostPostedDate = latestPost.author.posted_date;
-        const latestPostTitle = latestPost.title;
-        const latestPostDescription = latestPost.description;
-        const latestPostUserImage = latestPost.profile_image;
-        const postAuthorName = latestPost.author.name;
-        const postDesignation = latestPost.author.designation;
+const displayLatestPosts = (latestPosts) => {
+  // loop latest posts
+  latestPosts.forEach((latestPost) => {
+    console.log(latestPost);
+    // get image, author & category
+    const latestPostCoverImage = latestPost.cover_image;
+    const latestPostPostedDate = latestPost.author.posted_date;
+    const latestPostTitle = latestPost.title;
+    const latestPostDescription = latestPost.description;
+    const latestPostUserImage = latestPost.profile_image;
+    const postAuthorName = latestPost.author.name;
+    const postDesignation = latestPost.author.designation;
 
-        // select latest post Container
-        const latestPostContainer = document.getElementById('latest-post-container');
-        // create a div
-        const latestPostCard = document.createElement('div')
-        // add classes in div
-        latestPostCard.classList = ``
-        //  set inner html
-        latestPostCard.innerHTML = `
+    // select latest post Container
+    const latestPostContainer = document.getElementById(
+      "latest-post-container"
+    );
+    // create a div
+    const latestPostCard = document.createElement("div");
+    // add classes in div
+    latestPostCard.classList = ``;
+    //  set inner html
+    latestPostCard.innerHTML = `
             <div>
                 <div class="card w-full bg-base-100 space-y-3 shadow-xl border p-5">
                 <figure>
@@ -213,22 +148,9 @@ const displayLatestPosts = latestPosts => {
                 </div>
             </div>
          `;
-        // append to post Container
-        latestPostContainer.appendChild(latestPostCard);
-    })
-}
-
+    // append to post Container
+    latestPostContainer.appendChild(latestPostCard);
+  });
+};
 
 loadLatestPosts();
-
-
-
-
-
-
-
-
-
-
-
-
