@@ -1,5 +1,5 @@
-const loadCategory = async() =>{
-    const res = await fetch('https://openapi.programming-hero.com/api/retro-forum/posts');
+const loadCategory = async(searchText='') =>{
+    const res = await fetch(`https://openapi.programming-hero.com/api/retro-forum/posts?category=${searchText}`);
     const data = await res.json();
     const category = data.posts;
     // console.log(category);
@@ -10,6 +10,7 @@ const display = category =>{
     // console.log(category)
 
     const categoryContainer = document.getElementById('category-container');
+    categoryContainer.textContent = '';
 
     category.forEach(item =>{
         console.log(item);
@@ -59,6 +60,16 @@ const display = category =>{
     });
 }
 
+
+// Handle Search Button
+const handleSearch = () =>{
+    // console.log('clicked')
+    // toggleLoadingSpinner(true);
+    const searchField = document.getElementById('search-field');
+    const searchText = searchField.value;
+    console.log(searchText);
+    loadCategory(searchText);
+}
 
 loadCategory();
 
