@@ -31,23 +31,87 @@
         <nav class="mt-6 mb-12">
             <div class="navbar bg-base-100">
                 <div class="navbar-start">
-                    <a class="btn btn-ghost text-4xl font-black">ReTro</a>
+                    <div class="dropdown">
+                        <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M4 6h16M4 12h8m-8 6h16" />
+                            </svg>
+                        </div>
+                        <ul tabindex="0"
+                            class="menu menu-sm dropdown-content mt-3 z-[1] p-2 bg-gray-100 rounded-3xl shadow-xl rounded-box w-52">
+                            <li>
+                                <a>
+                                    <button class="btn btn-ghost btn-circle border-gray-300">
+                                        <i class="fa-solid fa-house"></i>
+                                    </button>
+                                </a>
+                            </li>
+                            <li>
+                                <a>
+                                    <div class="tooltip" data-tip=" Tooltip">
+                                        <button class="btn btn-ghost btn-circle border-gray-300">
+                                            <i class="fa-solid fa-pencil"></i>
+                                        </button>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a>
+                                    <button class="btn btn-ghost btn-circle border-gray-300">
+                                        <i class="fa-solid fa-user-plus"></i>
+                                    </button> 
+                                </a>
+                            </li>
+                            <li>
+                                <a>
+                                    <button class="btn btn-ghost btn-circle border-gray-300">
+                                        <i class="fa-solid fa-flag"></i>
+                                    </button>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <a class="btn btn-ghost text-4xl font-black">
+                        ReTro
+                    </a>
+                </div>
+                <div class="navbar-center hidden lg:flex">
+                    <ul class="menu menu-horizontal px-1 bg-gray-100 rounded-3xl shadow-xl">
+                        <li>
+                            <a>
+                                <button class="btn btn-ghost btn-circle border-gray-300">
+                                    <i class="fa-solid fa-house"></i>
+                                </button>
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <div class="tooltip" data-tip="Edit">
+                                    <button class="btn btn-ghost btn-circle border-gray-300">
+                                        <i class="fa-solid fa-pencil"></i>
+                                    </button>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <button class="btn btn-ghost btn-circle border-gray-300">
+                                    <i class="fa-solid fa-user-plus"></i>
+                                </button> 
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <button class="btn btn-ghost btn-circle border-gray-300">
+                                    <i class="fa-solid fa-flag"></i>
+                                </button>
+                            </a>
+                        </li>
+                    </ul>
                 </div>
                 <div class="navbar-end space-x-2">
-                    <button class="btn btn-ghost btn-circle border-gray-300">
-                        <i class="fa-solid fa-house"></i>
-                    </button>
-                    <div class="tooltip" data-tip=" Tooltip">
-                        <button class="btn btn-ghost btn-circle border-gray-300">
-                            <i class="fa-solid fa-pencil"></i>
-                        </button>
-                    </div>
-                    <button class="btn btn-ghost btn-circle border-gray-300">
-                        <i class="fa-solid fa-user-plus"></i>
-                    </button>
-                    <button class="btn btn-ghost btn-circle border-gray-300">
-                        <i class="fa-solid fa-flag"></i>
-                    </button>
                     <a class="btn primary-btn-color text-[20px] text-white font-bold rounded-[50px]">Sign In</a>
                 </div>
             </div>
@@ -121,7 +185,8 @@
                          font-bold">Title</h3>
                         <p class="font-medium">
                             <i class="fa-solid fa-check-double text-green-500"></i>
-                            <span> </span>Mark as read</p>
+                            <span> </span>Mark as read
+                        </p>
                     </div>
                 </div>
             </div>
@@ -165,7 +230,7 @@
             </div>
         </section>
     </main>
-    <footer class="footer footer-center p-10 bg-base-200 text-base-content rounded-md mt-32">
+    <footer class="footer footer-center p-10 bg-gray-100 shadow-inner text-base-content rounded-md mt-32">
         <h3 class="text-[#12132D] text-3xl font-black">
             Retro
         </h3>
