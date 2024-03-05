@@ -1,95 +1,162 @@
-const loadCategory = async (searchText = "") => {
-    const res = await fetch(
-      `https://openapi.programming-hero.com/api/retro-forum/posts?category=${searchText}`
-    );
+// https://openapi.programming-hero.com/api/retro-forum/posts
+// to load posts 2 secon delay
+const loadPosts = async (searchText = " ") => {
+    const res = await fetch(`https://openapi.programming-hero.com/api/retro-forum/posts?category=${searchText}`);
     const data = await res.json();
-    const category = data.posts;
-    display(category);
-};
+    const posts = data.posts;
+    // console.log(posts);
+    // calling a function for display posts
+    displayPosts(posts)
+}
+// function for Display post
+const displayPosts = posts => {
+    // select post Container
+    const postContainer = document.getElementById('post-container');
+    // Clear posts container cards before adding new cards
+    postContainer.textContent = '';
+    // loop posts
+    posts.forEach(post => {
+        console.log(post);
+        // get image, author & category
+        const posUserImage = post.image;
+        const postCategory = post.category;
+        const postAuthorName = post.author.name;
+        const postTitle = post.title;
+        const postDescription = post.description;
+        const postCommentCount = post.comment_count;
+        const postViewCount = post.view_count;
+        const postPostedTime = post.posted_time;
+        const postAuthorIsActive = post.isActive;
 
-    
-    const display = (category) => {
-    // console.log(category)
-    const categoryContainer = document.getElementById("category-container");
-    categoryContainer.textContent = "";
-  
-category.forEach((item) => {
-    console.log(item);
-    // create a div
-    const categoryCard = document.createElement("div");
-    categoryCard.classList = `lg:flex justify-center items-center bg-gray-200 rounded-3xl p-4 shadow-2xl`;
-    // set innerHTML
-    categoryCard.innerHTML = `
-        <figure class="pt-8 pr-8 pl-8 pb-2 lg:p-4">
-            <div class="bg-white w-24 h-24 rounded-xl relative">
-                <img class=" w-24 h-24 rounded-xl" src='${item.image}'>
-            <div>
-            <div>
-            <i class="fa-solid fa-circle absolute -right-1 -top-1 ${
-              item.isActive ? "text-green-500" : "text-red-500"
-            }"></i>
+
+        // create a div
+        const postCard = document.createElement('div');
+        // add classes in div
+        postCard.classList = `flex gap-5 flex-col md:flex-row  bg-[#F3F3F5] shadow-xl p-5 rounded-xl justify-around`;
+        // set inner html
+        postCard.innerHTML = `
+                    <div>
+                    <div class="bg-white w-10 h-10 rounded-xl relative">
+                    <img class=" w-10 h-10 rounded-xl" src='${posUserImage}'>
+                    <div>
+                    <i class="fa-solid fa-circle absolute -right-1 -top-1 ${postAuthorIsActive ? 'text-green-500' : 'text-red-500'}"></i>
+                    </div>
+                    </div>
+                    </div>
+                    <div class="space-y-2">
+                    <div class="mt-2 text-gray-500 text-xs"><span># ${postCategory}</span> &nbsp; <span>Author: ${postAuthorName}</span></div>
+                    <h1 class="font-bold text-[18px]">${postTitle}</h1>
+                    <p class="text-sm">${postDescription}</p>
+                    <hr class="bg-gray-500 border-dashed">
+                    <div class="flex justify-between">
+                    <div class="mt-2 text-gray-500 text-xs space-x-4">
+                    <span><i class="fa-regular fa-comment-dots"></i> ${postCommentCount}</span>
+                    <span><i class="fa-solid fa-eye"></i> ${postViewCount}</span>
+                    <span><i class="fa-regular fa-clock"></i> ${postPostedTime}</span>
+                    </div>
+                    <div class="">
+                    <button class="button-for-click"><i
+                    class="fa-solid fa-envelope-open ml-1 p-2 bg-green-500 rounded-3xl text-white"></i></button>
+                    </div>
+                    </div>
+                    </div>
+        `
+        // append to post Container
+        postContainer.appendChild(postCard);
+
+
+
+        // Find the button element within the post card
+        const button = postCard.querySelector('.button-for-click');
+        // Capture postTitle and postViewCount
+
+        // Attach an event listener to the button
+        button.addEventListener('click', (event) => {
+
+            const postTitle = post.title;
+            const postViewCount = post.view_count;
+            // Define handleButtonClick function within the closure
+    const handleButtonClick = () => {
+        // select post Container
+        const postContainer = document.getElementById('post-container')
+        // Get the count span
+        const countSpan = document.getElementById('count');
+        // Parse the current count
+        let count = parseInt(countSpan.innerText);
+        // Increment the count
+        count++;
+        // Update the count span
+        countSpan.innerText = count;
+
+        // get title container
+        const titleContainer = document.getElementById('title-container');
+        // create div
+        const titleCard = document.createElement('div');
+        // set inner html
+        titleCard.innerHTML = `
+        <div class="bg-white p-5 mb-5 flex rounded-xl">
+            <div class=" pr-5">
+                <h1 class="font-bold text-sm">${postTitle}</h1>
             </div>
-        </figure>
-        <div class="card-body">
-            <div class="lg:flex justify-start gap-6">
-                <div>
-                    <p class="text-[16px] font-inter font-medium">#<span> </span>${item.category}</p>
-                </div>
-                <div>
-                    <p class="text-[16px] font-inter font-medium">Author:<span> </span>${item.author.name}</p>
-                </div>
-            </div>
-            <h2 class="card-title text-[20px] font-bold">${item.title}</h2>
-            <p class="text-[16px] font-inter">${item.description}</p>
-            <div class="card-actions items-center justify-start">
-                <p class="text-[16px] font-inter font-medium"><i class="fa-regular fa-comment-dots"></i>
-                    <span> </span>${item.comment_count}
-                </p>
-                <p class="text-[16px] font-inter font-medium"><i class="fa-regular fa-eye"></i>
-                    <span> </span>${item.view_count}
-                </p>
-                <p class="text-[16px] font-inter font-medium"><i class="fa-regular fa-clock"></i>
-                    <span> </span>${item.posted_time}
-                </p>
-                <p>
-                    <button class="btn bg-green-500 rounded-full">
-                        <i class="fa-solid fa-envelope-open text-white text-xl"></i>
-                    </button>
-                </p>
+            <div>
+                <span><i class="fa-solid fa-eye"></i> ${postViewCount}</span>
             </div>
         </div>
         `;
-    // append child
-    categoryContainer.appendChild(categoryCard);
-  });
-};
+        // append to container
+        titleContainer.appendChild(titleCard);
+    };
 
-// Handle Search Button
-const handleSearch = () => {
-    // console.log("clicked");
-    // toggleLoadingSpinner(true);
-    const searchField = document.getElementById("search-field");
-    const searchText = searchField.value;
-    console.log(searchText);
-    loadCategory(searchText);
-};
-
-// const toggleLoadingSpinner = (isLoading) =>{
-//     const loadingSpinner = document.getElementById('loading-spinner');
-//     if(isLoading){
-//         loadingSpinner.classList.remove('hidden');
-//     }
-//     else{
-//         loadingSpinner.classList.add('hidden');
-//     }
+    // Call the handleButtonClick function
+    handleButtonClick();
+        });
+// handle search button
+// const handleSearch = () => {
+//     toggleLoadingDots(true);
+//     // Introduce a 2-second delay before loading posts
+//     setTimeout(() => {
+//         const searchField = document.getElementById('search-field');
+//         const searchText = searchField.value;
+//         loadPosts(searchText); // Load posts after the delay
+//     }, 2000);
 // }
 
-loadCategory();
 
 
 
 
-// loadCategory();
+
+
+    })
+    // hide loading spinner
+    toggleLoadingDots(false)
+
+
+
+
+
+
+};
+
+
+
+
+
+
+
+
+// outside of display function
+
+
+
+
+
+
+
+loadPosts()
+
+
+
 
 // Latest Posts Functionality
 const loadLatestPosts = async () => {
@@ -133,7 +200,7 @@ const displayLatestPosts = (latestPosts) => {
                 <img src="${latestPostCoverImage}">
                 </div>
                 </figure>
-                <div class="mt-2 text-gray-500"><i class="fa-solid fa-calendar-days"></i> <span id="no-posted-date"></span> ${latestPostPostedDate}</div>
+                <div class="mt-2 text-gray-500"><i class="fa-solid fa-calendar-days"></i> <span id="no-posted-date"></span> ${latestPostPostedDate?latestPostPostedDate: "No Posted Date"}</div>
                 <div class="">
                 <h1 class="font-bold text-lg">${latestPostTitle}</h1>
                 <p>${latestPostDescription}</p>
@@ -141,7 +208,7 @@ const displayLatestPosts = (latestPosts) => {
                 <div class="w-[50px]"><img src="${latestPostUserImage}" class="border-2  rounded-full "></div>
                 <div class="flex flex-col ml-4">
                 <div><span class="font-bold">${postAuthorName}</span></div>
-                <div><span class="text-sm">${postDesignation}</span></div>
+                <div><span class="text-sm">${postDesignation?postDesignation:"Unknown"}</span></div>
                 </div>
                 </div>
                 </div>
@@ -154,3 +221,55 @@ const displayLatestPosts = (latestPosts) => {
 };
 
 loadLatestPosts();
+
+// handle search button
+const handleSearch = () => {
+    toggleLoadingDots(true);
+    // Introduce a 2-second delay before loading posts
+    setTimeout(() => {
+        const searchField = document.getElementById('search-field');
+        const searchText = searchField.value;
+        loadPosts(searchText); // Load posts after the delay
+    }, 2000);
+}
+
+// toggle loading dots
+const toggleLoadingDots = (isLoading) => {
+    const loadingDoatsdiv = document.getElementById('loading-dots-div');
+    if (isLoading) {
+        loadingDoatsdiv.classList.remove('hidden');
+    }
+    else {
+        loadingDoatsdiv.classList.add('hidden');
+    }
+}
+
+// toggle loading dots when page is loading
+const toggleLoadingDotsWhenPageLoading = () => {
+    const loadingDots2 = document.querySelector('.loading-dots2-div-when-loading');
+    loadingDots2.classList.toggle('hidden');
+};
+// Show loading dots when the page starts loading
+document.addEventListener('DOMContentLoaded', function () {
+    toggleLoadingDotsWhenPageLoading();
+});
+// Hide loading dots when the page content is fully loaded
+window.addEventListener('load', function () {
+    toggleLoadingDotsWhenPageLoading();
+});
+
+
+
+const loadAllPostsWithDelay = () => {
+    toggleLoadingDots(true);
+    toggleLoadingDotsWhenPageLoading(true);
+    // Introduce a 2-second delay using setTimeout
+    setTimeout(() => {
+        toggleLoadingDots(false);
+        toggleLoadingDotsWhenPageLoading(false);
+        loadPosts();
+        loadLatestPosts();
+    }, 2000);
+};
+// calling latest posts
+loadAllPostsWithDelay();

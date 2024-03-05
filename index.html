@@ -164,33 +164,45 @@
         </div>
     </header>
     <main>
-        <!-- Let’s Discuss Section -->
-        <section class="mt-32 mb-32">
-            <div>
-                <h1 class="text-5xl mx-auto text-center lg:text-4xl font-black mb-6">
-                    Let’s Discuss
-                </h1>
-                <p class="text-[18px] mx-auto text-center font-normal mb-16 w-full lg:w-1/2">
-                    Embark on insightful conversations in our forum.Engage in thought-provoking dialogues where every
-                    voice finds its place. Let's Discuss and uncover the collective wisdom within our community.
-                </p>
+        <!-- Section Discuss -->
+        <section class="mt-10">
+            <div class="space-y-2">
+                <h1 class="text-3xl font-bold text-center">Let’s Discuss</h1>
+                <p class="font-secondary text-gray-400] text-xs lg:text-sm text-center">A platform for
+                    open dialogue, sharing ideas, and fostering meaningful conversations among diverse communities.</p>
             </div>
-            <div id="" class="lg:flex gap-6 space-y-6">
-                <div id="category-container" class="lg:w-3/4 space-y-6">
-                    <!-- loading dots div -->
-                    <div>
-                        <span id="loading-spinner" class="loading loading-spinner loading-lg hidden"></span>
-                    </div>
+            <!-- loading dots div -->
+            <div class="mt-10">
+                <div id="loading-dots-div" class="text-center hidden">
+                    <span class="loading loading-bars  loading-lg bg-black"></span>
                 </div>
-                <div class="bg-gray-200 lg:w-3/12 p-4 rounded-3xl shadow-2xl">
-                    <div class="flex justify-between">
-                        <h3 class="text-2xl
-                         font-bold">Title</h3>
-                        <p class="font-medium">
-                            <i class="fa-solid fa-check-double text-green-500"></i>
-                            <span> </span>Mark as read
-                        </p>
+                <div class="loading-dots-div-when-loading text-center hidden">
+                    <span class="loading loading-bars  loading-lg bg-black"></span>
+                </div>
+            </div>
+            <!-- Discuss Container -->
+            <div class="grid gap-5 grid-cols-1 md:grid-cols-2 mt-10">
+                <!-- post container -->
+                <div id="post-container" class="grid gap-5 grid-cols-1">
+                    <!-- Cards -->
+                    <div class="">
                     </div>
+
+
+                </div>
+                <!-- title container -->
+                <div id="title-container" class="  bg-[#F3F3F4] shadow-xl p-5  rounded-xl ">
+                    <div class="flex justify-between mb-5">
+                        <div>
+                            <h1 class="font-bold text-lg">Title</h1>
+                        </div>
+                        <div id="clickCount" class="text-gray-500"><i
+                                class="fa-solid fa-check-double text-green-300"></i> Mark as read
+                            (<span id="count">0</span>)
+                        </div>
+                    </div>
+                    <!-- cards -->
+
                 </div>
             </div>
         </section>
