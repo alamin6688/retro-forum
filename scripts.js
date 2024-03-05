@@ -1,4 +1,4 @@
-const loadPosts = async (searchText = " ") => {
+const loadCategory = async (searchText = " ") => {
     const res = await fetch(`https://openapi.programming-hero.com/api/retro-forum/posts?category=${searchText}`);
     const data = await res.json();
     const posts = data.posts;
@@ -8,65 +8,65 @@ const loadPosts = async (searchText = " ") => {
 
 
 const displayPosts = (posts) => {
-    const postContainer = document.getElementById("post-container");
-    postContainer.textContent = "";
-    posts.forEach((post) => {
-        console.log(post);
+    const categoryContainer = document.getElementById("post-container");
+    categoryContainer.textContent = "";
+    posts.forEach((item) => {
+        console.log(item);
 
     // API's Data in variables---
-    const posUserImage = post.image;
-    const postCategory = post.category;
-    const postAuthorName = post.author.name;
-    const postTitle = post.title;
-    const postDescription = post.description;
-    const postCommentCount = post.comment_count;
-    const postViewCount = post.view_count;
-    const postPostedTime = post.posted_time;
-    const postAuthorIsActive = post.isActive;
+    const postUserImage = item.image;
+    const postAuthorIsActive = item.isActive;
+    const postCategory = item.category;
+    const postAuthorName = item.author.name;
+    const postTitle = item.title;
+    const postDescription = item.description;
+    const postCommentCount = item.comment_count;
+    const postViewCount = item.view_count;
+    const postPostedTime = item.posted_time;
 
     // create a div
-    const postCard = document.createElement("div");
+    const categoryCard = document.createElement("div");
 
     // add classes in div
-    postCard.classList = `flex gap-5 flex-col md:flex-row  bg-[#F3F3F5] shadow-xl p-5 rounded-xl justify-around`;
+    categoryCard.classList = `flex gap-5 flex-col md:flex-row  bg-gray-200 shadow-2xl p-5 rounded-2xl justify-around`;
 
     // set innerHTML
-    postCard.innerHTML = `
+    categoryCard.innerHTML = `
         <div>
-        <div class="bg-white w-10 h-10 rounded-xl relative">
-        <img class=" w-10 h-10 rounded-xl" src='${posUserImage}'>
-        <div>
-        <i class="fa-solid fa-circle absolute -right-1 -top-1 ${
-          postAuthorIsActive ? "text-green-500" : "text-red-500"
-        }"></i>
+            <div class="bg-white w-10 h-10 rounded-xl relative">
+                <img class=" w-10 h-10 rounded-xl" src='${postUserImage}'>
+            <div>
+            <i class="fa-solid fa-circle absolute -right-1 -top-1 ${
+            postAuthorIsActive ? "text-green-500" : "text-red-500"}">
+            </i>
         </div>
         </div>
         </div>
         <div class="space-y-2">
         <div class="mt-2 text-gray-500 text-xs"><span># ${postCategory}</span> &nbsp; <span>Author: ${postAuthorName}</span></div>
-        <h1 class="font-bold text-[18px]">${postTitle}</h1>
-        <p class="text-sm">${postDescription}</p>
-        <hr class="bg-gray-500 border-dashed">
+            <h1 class="font-bold text-[18px]">${postTitle}</h1>
+            <p class="text-sm">${postDescription}</p>
+            <hr class="bg-gray-500 border-dashed">
         <div class="flex justify-between">
-        <div class="mt-2 text-gray-500 text-xs space-x-4">
-        <span><i class="fa-regular fa-comment-dots"></i> ${postCommentCount}</span>
-        <span><i class="fa-solid fa-eye"></i> ${postViewCount}</span>
-        <span><i class="fa-regular fa-clock"></i> ${postPostedTime}</span>
+        <div class="mt-2 flex justify-between text-gray-500 text-xs space-x-4">
+            <span><i class="fa-regular fa-comment-dots"></i> ${postCommentCount}</span>
+            <span><i class="fa-solid fa-eye"></i> ${postViewCount}</span>
+            <span><i class="fa-regular fa-clock"></i> ${postPostedTime}</span>
         </div>
-        <div class="">
-        <button class="button-for-click"><i
-        class="fa-solid fa-envelope-open ml-1 p-2 bg-green-500 rounded-3xl text-white"></i></button>
+        <div>
+            <button class="button-for-click"><i
+            class="fa-solid fa-envelope-open ml-1 p-2 bg-green-500 rounded-3xl text-white"></i></button>
         </div>
         </div>
         </div>
     `;
-    postContainer.appendChild(postCard);
+    categoryContainer.appendChild(categoryCard);
 
     // button View count functions 
-    const button = postCard.querySelector(".button-for-click");
+    const button = categoryCard.querySelector(".button-for-click");
     button.addEventListener("click", (event) => {
-        const postTitle = post.title;
-        const postViewCount = post.view_count;
+        const postTitle = item.title;
+        const postViewCount = item.view_count;
         const handleButtonClick = () => {
             
         // select post Container
@@ -81,7 +81,7 @@ const displayPosts = (posts) => {
         const titleCard = document.createElement("div");
         // set inner html
         titleCard.innerHTML = `
-            <div class="bg-white p-5 mb-5 flex rounded-xl">
+            <div class="bg-white p-2 lg:p-5 mb-5 flex justify-between rounded-xl">
                 <div class=" pr-5">
                     <h1 class="font-bold text-sm">${postTitle}</h1>
                 </div>
@@ -93,14 +93,15 @@ const displayPosts = (posts) => {
         titleContainer.appendChild(titleCard);
       };
 
-      handleButtonClick();
+        handleButtonClick();
+
     });
   });
-  // hide loading spinner
-  toggleLoadingDots(false);
+    // hide loading spinner
+    toggleLoadingDots(false);
 };
 
-loadPosts();
+loadCategory();
 
 // Latest Posts Functionality
 const loadLatestPosts = async () => {
@@ -179,7 +180,7 @@ const handleSearch = () => {
     setTimeout(() => {
         const searchField = document.getElementById("search-field");
         const searchText = searchField.value;
-        loadPosts(searchText);
+        loadCategory(searchText);
         }, 2000);
     };
 
@@ -217,7 +218,7 @@ const loadAllPostsWithDelay = () => {
   setTimeout(() => {
     toggleLoadingDots(false);
     toggleLoadingDotsWhenPageLoading(false);
-    loadPosts();
+    loadCategory();
     loadLatestPosts();
   }, 2000);
 };

@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,7 +23,6 @@
     <!-- Font Awesome -->
     <script src="https://kit.fontawesome.com/1e313f4bd5.js" crossorigin="anonymous"></script>
 </head>
-
 <body class="font-mulish w-[90%] mx-auto">
     <header>
         <!-- Navbar -->
@@ -73,15 +71,15 @@
                             </li>
                         </ul>
                     </div>
-                    <a class="btn btn-ghost text-4xl font-black">
-                        ReTro
+                    <a class="btn btn-ghost text-[#797DFC] text-4xl font-black">
+                        MeTro
                     </a>
                 </div>
                 <div class="navbar-center hidden lg:flex">
-                    <ul class="menu menu-horizontal px-1 bg-gray-100 rounded-3xl shadow-xl">
+                    <ul class="menu menu-horizontal px-1 bg-violet-100 rounded-3xl shadow-xl">
                         <li>
                             <a>
-                                <button class="btn btn-ghost btn-circle border-gray-300">
+                                <button class="btn btn-ghost btn-circle border-gray-400">
                                     <i class="fa-solid fa-house"></i>
                                 </button>
                             </a>
@@ -89,7 +87,7 @@
                         <li>
                             <a>
                                 <div class="tooltip" data-tip="Edit">
-                                    <button class="btn btn-ghost btn-circle border-gray-300">
+                                    <button class="btn btn-ghost btn-circle border-gray-400">
                                         <i class="fa-solid fa-pencil"></i>
                                     </button>
                                 </div>
@@ -97,14 +95,14 @@
                         </li>
                         <li>
                             <a>
-                                <button class="btn btn-ghost btn-circle border-gray-300">
+                                <button class="btn btn-ghost btn-circle border-gray-400">
                                     <i class="fa-solid fa-user-plus"></i>
                                 </button>
                             </a>
                         </li>
                         <li>
                             <a>
-                                <button class="btn btn-ghost btn-circle border-gray-300">
+                                <button class="btn btn-ghost btn-circle border-gray-400">
                                     <i class="fa-solid fa-flag"></i>
                                 </button>
                             </a>
@@ -123,7 +121,7 @@
                     <h1 class="text-[32px] lg:text-[64px] text-white font-black">
                         Welcome to the <br>
                         <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#7478F1] to-[#343672]">
-                            ReTro
+                            MeTro
                         </span>
                         Forum
                     </h1>
@@ -164,45 +162,44 @@
         </div>
     </header>
     <main>
-        <!-- Section Discuss -->
+        <!-- Let's Discuss Section -->
         <section class="mt-10">
             <div class="space-y-2">
-                <h1 class="text-3xl font-bold text-center">Let’s Discuss</h1>
-                <p class="font-secondary text-gray-400] text-xs lg:text-sm text-center">A platform for
-                    open dialogue, sharing ideas, and fostering meaningful conversations among diverse communities.</p>
+                <h1 class="text-3xl mx-auto text-center lg:text-4xl font-black mb-6">
+                    Let’s Discuss
+                </h1>
+                <p class="text-[18px] mx-auto text-center font-normal mb-16 w-full lg:w-1/2">
+                    Engage in thought-provoking dialogues, where every voice finds its place. Let's Discuss, and uncover the collective wisdom within our community.
+                </p>
             </div>
-            <!-- loading dots div -->
-            <div class="mt-10">
+            <!-- Loading Spinner div -->
+            <div class="mt-20">
                 <div id="loading-dots-div" class="text-center hidden">
                     <span class="loading loading-bars  loading-lg bg-black"></span>
                 </div>
                 <div class="loading-dots-div-when-loading text-center hidden">
-                    <span class="loading loading-bars  loading-lg bg-black"></span>
+                    <span class="loading loading-bars loading-lg bg-black"></span>
                 </div>
             </div>
             <!-- Discuss Container -->
             <div class="grid gap-5 grid-cols-1 md:grid-cols-2 mt-10">
-                <!-- post container -->
+                <!-- Category container -->
                 <div id="post-container" class="grid gap-5 grid-cols-1">
                     <!-- Cards -->
                     <div class="">
                     </div>
-
-
                 </div>
-                <!-- title container -->
-                <div id="title-container" class="  bg-[#F3F3F4] shadow-xl p-5  rounded-xl ">
+                <!-- Title container -->
+                <div id="title-container" class="bg-gray-200 shadow-xl p-5 rounded-xl ">
                     <div class="flex justify-between mb-5">
                         <div>
-                            <h1 class="font-bold text-lg">Title</h1>
+                            <h1 class="font-bold text-xl">Title</h1>
                         </div>
                         <div id="clickCount" class="text-gray-500"><i
                                 class="fa-solid fa-check-double text-green-300"></i> Mark as read
                             (<span id="count">0</span>)
                         </div>
                     </div>
-                    <!-- cards -->
-
                 </div>
             </div>
         </section>
@@ -287,5 +284,4 @@
     </footer>
     <script src="scripts.js"></script>
 </body>
-
 </html>
